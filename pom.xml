@@ -20,8 +20,8 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://github.com/TOPdesk/time-transformer-agent.git</connection>
-		<developerConnection>scm:git:https://github.com/TOPdesk/time-transformer-agent.git</developerConnection>
+		<connection>scm:git:git@github.com:TOPdesk/time-transformer-agent.git</connection>
+		<developerConnection>scm:git:git@github.com:TOPdesk/time-transformer-agent.git</developerConnection>
 		<url>https://github.com/topdesk/time-transformer-agent</url>
 		<tag>HEAD</tag>
 	</scm>
