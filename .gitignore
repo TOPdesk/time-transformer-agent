@@ -4,3 +4,4 @@
 target/*
 /target/
 Thumbs.db
+dependency-reduced-pom.xml
