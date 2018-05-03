@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>open-source-parent</artifactId>
 		<groupId>com.topdesk</groupId>
-		<version>1.0.0</version>
+		<version>1.1.0</version>
 	</parent>
 	<artifactId>time-transformer-agent</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm</artifactId>
-			<version>5.0.4</version>
+			<version>6.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -65,7 +65,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.5</version>
+				<version>3.1.1</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
