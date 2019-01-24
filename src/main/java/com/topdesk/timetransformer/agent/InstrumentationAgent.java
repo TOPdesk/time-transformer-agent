@@ -1,6 +1,7 @@
 package com.topdesk.timetransformer.agent;
 
 import java.lang.instrument.Instrumentation;
+import java.lang.instrument.UnmodifiableClassException;
 
 public class InstrumentationAgent {
 	/**
@@ -11,8 +12,19 @@ public class InstrumentationAgent {
 	 *
 	 * @param agentArgs arguments passed to this agent
 	 * @param instrumentation the {@link Instrumentation} instance passed by the JVM
+	 * @throws UnmodifiableClassException 
 	 */
-	public static void premain(String agentArgs, Instrumentation instrumentation) {
+	public static void premain(@SuppressWarnings("unused") String agentArgs, Instrumentation instrumentation) throws UnmodifiableClassException {
 		instrumentation.addTransformer(new TimeInstrumentationTransformer(), false);
+		
+		if (instrumentation.isRetransformClassesSupported()) {
+			Class<?>[] allLoadedClasses = instrumentation.getAllLoadedClasses();
+			for (int i = 0; i < allLoadedClasses.length; i++) {
+				Class<?> clazz = allLoadedClasses[i];
+				if (instrumentation.isModifiableClass(clazz)) {
+					instrumentation.retransformClasses(clazz);
+				}
+			}
+		}
 	}
 }

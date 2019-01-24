@@ -58,6 +58,7 @@
 						<manifestEntries>
 							<Premain-Class>com.topdesk.timetransformer.agent.InstrumentationAgent</Premain-Class>
 							<Boot-Class-Path>${project.artifactId}-${project.version}.jar</Boot-Class-Path>
+							<Can-Retransform-Classes>true</Can-Retransform-Classes>
 						</manifestEntries>
 					</archive>
 				</configuration>
