@@ -85,6 +85,12 @@
 									<shadedPattern>org.shaded.asm</shadedPattern>
 								</relocation>
 							</relocations>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>module-info.class</excludes>
+								</filter>
+							</filters>
 						</configuration>
 					</execution>
 				</executions>
