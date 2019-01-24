@@ -53,7 +53,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<addClasspath>true</addClasspath>
+							<addClasspath>false</addClasspath>
 						</manifest>
 						<manifestEntries>
 							<Premain-Class>com.topdesk.timetransformer.agent.InstrumentationAgent</Premain-Class>
