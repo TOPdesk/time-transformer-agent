@@ -1,6 +1,7 @@
 package com.topdesk.timetransformer.agent;
 
-import static org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Opcodes.ACC_NATIVE;
+import static org.objectweb.asm.Opcodes.ASM7;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -36,7 +37,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 		private boolean instrument = true;
 		
 		ClassInstrumenter(ClassVisitor classVisitor) {
-			super(ASM5, classVisitor);
+			super(ASM7, classVisitor);
 		}
 		
 		@Override
@@ -59,7 +60,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 	
 	private static class MethodInstrumenter extends MethodVisitor {
 		MethodInstrumenter(MethodVisitor methodVisitor) {
-			super(ASM5, methodVisitor);
+			super(ASM7, methodVisitor);
 		}
 		
 		@Override
