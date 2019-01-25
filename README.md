@@ -11,7 +11,7 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
   <dependency>
       <groupId>com.topdesk</groupId>
       <artifactId>time-transformer-agent</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.0</version>
       <scope>test</scope>
   </dependency>
   ```
@@ -37,7 +37,7 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
 
 3. Add the following line to the command you use to run your tests:
 ```
--javaagent:/path/to/time-transformer-agent-1.1.0.jar
+-javaagent:/path/to/time-transformer-agent-1.2.0.jar
 ```
 
   **Examples:**
@@ -71,7 +71,7 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
 
   *Eclipse:*
 
-  It is also possible to use the TimeTransformer in the Eclipse JUnit runner. Edit your Run configuration -> *Arguments* ->  *VM arguments* -> `-javaagent:/path/to/time-transformer-agent-1.1.0.jar`
+  It is also possible to use the TimeTransformer in the Eclipse JUnit runner. Edit your Run configuration -> *Arguments* ->  *VM arguments* -> `-javaagent:/path/to/time-transformer-agent-1.2.0.jar`
 
 # How the TimeTransformer works:
 The `TimeTransformer` uses bytecode weaving to replace all calls to `System.currentTimeMillis()` and `System.nanoTime()` for calls to `TimeTransformer.currentTimeMillis()` and `TimeTransformer.nanoTime()`. Bytecode weaving (a.k.a. bytecode instrumentation, or just in time bytecode manipulation) is the process of modifying the Java bytecode when a class is loaded by a ClassLoader.
