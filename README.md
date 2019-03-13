@@ -37,7 +37,7 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
 
 3. Add the following line to the command you use to run your tests:
 ```
--javaagent:/path/to/time-transformer-agent-1.2.0.jar
+-javaagent:/path/to/time-transformer-agent.jar
 ```
 
   **Examples:**
