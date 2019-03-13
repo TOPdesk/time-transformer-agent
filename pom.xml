@@ -55,6 +55,23 @@
 						<goals>
 							<goal>integration-test</goal>
 						</goals>
+						<configuration>
+							<excludes>
+								<exclude>*ITWithTimeManipulation.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>time-manipulated-integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>*ITWithTimeManipulation.java</include>
+							</includes>
+							<argLine>-javaagent:${project.build.directory}/${project.artifactId}-${project.version}.jar</argLine>
+						</configuration>
 					</execution>
 					<execution>
 						<id>verify</id>

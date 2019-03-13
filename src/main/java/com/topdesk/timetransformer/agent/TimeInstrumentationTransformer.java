@@ -1,7 +1,11 @@
 package com.topdesk.timetransformer.agent;
 
 import static org.objectweb.asm.Opcodes.ACC_NATIVE;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ARETURN;
 import static org.objectweb.asm.Opcodes.ASM7;
+import static org.objectweb.asm.Opcodes.INVOKESTATIC;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -11,6 +15,7 @@ import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
 public class TimeInstrumentationTransformer implements ClassFileTransformer {
@@ -22,7 +27,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 		ClassReader classReader = new ClassReader(classfileBuffer);
 		ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-		ClassInstrumenter classVisitor = new ClassInstrumenter(classWriter);
+		ClassInstrumenter classVisitor = new ClassInstrumenter(classWriter, className);
 		
 		try {
 			classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
@@ -34,10 +39,12 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 	}
 	
 	private static class ClassInstrumenter extends ClassVisitor {
+		private final String className;
 		private boolean instrument = true;
 		
-		ClassInstrumenter(ClassVisitor classVisitor) {
+		ClassInstrumenter(ClassVisitor classVisitor, String className) {
 			super(ASM7, classVisitor);
+			this.className = className;
 		}
 		
 		@Override
@@ -53,6 +60,11 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 			MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
 			if (!instrument || (access & ACC_NATIVE) != 0) {
 				return methodVisitor;
+			}
+			if ("java/time/Clock$SystemClock".equals(className) && 
+					"instant".equals(name) && 
+					"()Ljava/time/Instant;".equals(desc)) {
+				return new SystemClockMethodInstrumenter(methodVisitor);
 			}
 			return new MethodInstrumenter(methodVisitor);
 		}
@@ -72,6 +84,31 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 			else {
 				super.visitMethodInsn(opcode, owner, name, desc, itf);
 			}
+		}
+	}
+	
+	private static class SystemClockMethodInstrumenter extends MethodVisitor {
+		private final MethodVisitor target;
+		
+		SystemClockMethodInstrumenter(MethodVisitor methodVisitor) {
+			super(ASM7, null);
+			target = methodVisitor;
+		}
+		
+		@Override
+		public void visitCode() {
+			target.visitCode();
+			Label label0 = new Label();
+			target.visitLabel(label0);
+			target.visitVarInsn(ALOAD, 0);
+			target.visitMethodInsn(INVOKEVIRTUAL, "java/time/Clock$SystemClock", "millis", "()J", false);
+			target.visitMethodInsn(INVOKESTATIC, "java/time/Instant", "ofEpochMilli", "(J)Ljava/time/Instant;", false);
+			target.visitInsn(ARETURN);
+			Label label1 = new Label();
+			target.visitLabel(label1);
+			target.visitLocalVariable("this", "Ljava/time/Clock$SystemClock;", null, label0, label1, 0);
+			target.visitMaxs(2, 1);
+			target.visitEnd();
 		}
 	}
 }
