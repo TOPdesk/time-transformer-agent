@@ -3,7 +3,7 @@ package com.topdesk.timetransformer.agent;
 import static org.objectweb.asm.Opcodes.ACC_NATIVE;
 import static org.objectweb.asm.Opcodes.ALOAD;
 import static org.objectweb.asm.Opcodes.ARETURN;
-import static org.objectweb.asm.Opcodes.ASM7;
+import static org.objectweb.asm.Opcodes.ASM9;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
@@ -43,7 +43,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 		private boolean instrument = true;
 		
 		ClassInstrumenter(ClassVisitor classVisitor, String className) {
-			super(ASM7, classVisitor);
+			super(ASM9, classVisitor);
 			this.className = className;
 		}
 		
@@ -72,7 +72,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 	
 	private static class MethodInstrumenter extends MethodVisitor {
 		MethodInstrumenter(MethodVisitor methodVisitor) {
-			super(ASM7, methodVisitor);
+			super(ASM9, methodVisitor);
 		}
 		
 		@Override
@@ -91,7 +91,7 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 		private final MethodVisitor target;
 		
 		SystemClockMethodInstrumenter(MethodVisitor methodVisitor) {
-			super(ASM7, null);
+			super(ASM9, null);
 			target = methodVisitor;
 		}
 		
