@@ -3,13 +3,17 @@
 	<parent>
 		<artifactId>open-source-parent</artifactId>
 		<groupId>com.topdesk</groupId>
-		<version>1.2.0</version>
+		<version>2.0.1</version>
 	</parent>
 	<artifactId>time-transformer-agent</artifactId>
 	<version>1.2.2-SNAPSHOT</version>
 	<name>Time Transformer Agent</name>
 	<description>Instrumentation agent to change System.currentTimeMillis() and System.nanoTime() for testing purposes</description>
 
+	<properties>
+		<java.version>8</java.version> <!-- Target Java version 8, so old projects can also benefit from the TimeTransformer -->
+	</properties>
+	
 	<developers>
 		<developer>
 			<name>Joep Weijers</name>
