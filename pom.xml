@@ -6,7 +6,7 @@
 		<version>2.0.1</version>
 	</parent>
 	<artifactId>time-transformer-agent</artifactId>
-	<version>1.3.0</version>
+	<version>1.3.1-SNAPSHOT</version>
 	<name>Time Transformer Agent</name>
 	<description>Instrumentation agent to change System.currentTimeMillis() and System.nanoTime() for testing purposes</description>
 
@@ -27,7 +27,7 @@
 		<connection>scm:git:git@github.com:TOPdesk/time-transformer-agent.git</connection>
 		<developerConnection>scm:git:git@github.com:TOPdesk/time-transformer-agent.git</developerConnection>
 		<url>https://github.com/topdesk/time-transformer-agent</url>
-		<tag>time-transformer-agent-1.3.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
