@@ -12,7 +12,7 @@ public class InstrumentationAgent {
 	 *
 	 * @param agentArgs arguments passed to this agent
 	 * @param instrumentation the {@link Instrumentation} instance passed by the JVM
-	 * @throws UnmodifiableClassException 
+	 * @throws UnmodifiableClassException  if a specified class cannot be modified(isModifiableClass would return false)
 	 */
 	public static void premain(@SuppressWarnings("unused") String agentArgs, Instrumentation instrumentation) throws UnmodifiableClassException {
 		instrumentation.addTransformer(new TimeInstrumentationTransformer(), false);
