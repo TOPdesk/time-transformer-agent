@@ -126,7 +126,7 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>org.ow2.asm:*</include>
+									<include>org.ow2.asm:asm</include>
 								</includes>
 							</artifactSet>
 							<relocations>
@@ -137,8 +137,11 @@
 							</relocations>
 							<filters>
 								<filter>
-									<artifact>*:*</artifact>
-									<excludes>module-info.class</excludes>
+									<artifact>org.ow2.asm:asm</artifact>
+									<excludes>
+										<exclude>module-info.class</exclude>
+										<exclude>META-INF/MANIFEST.MF</exclude>
+									</excludes>
 								</filter>
 							</filters>
 						</configuration>
