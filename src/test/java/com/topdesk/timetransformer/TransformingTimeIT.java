@@ -1,6 +1,7 @@
 package com.topdesk.timetransformer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -8,8 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.topdesk.timetransformer.TransformingTime;
 
 // NOTE: This class is system dependent. It makes extensive use of Thread.sleep.
 public class TransformingTimeIT {
