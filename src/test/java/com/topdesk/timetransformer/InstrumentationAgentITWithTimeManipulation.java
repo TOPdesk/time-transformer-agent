@@ -3,6 +3,7 @@ package com.topdesk.timetransformer;
 import static org.junit.Assert.assertEquals;
 
 import java.time.Clock;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -41,5 +42,10 @@ public class InstrumentationAgentITWithTimeManipulation {
 	@Test
 	public void testClockSystemDefaultZoneInstant() {
 		assertEquals(time, Clock.systemDefaultZone().instant().toEpochMilli());
+	}
+	
+	@Test
+	public void testDate() {
+		assertEquals(time, new Date().toInstant().toEpochMilli());
 	}
 }
