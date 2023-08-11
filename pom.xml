@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>open-source-parent</artifactId>
 		<groupId>com.topdesk</groupId>
-		<version>3.0.0</version>
+		<version>3.1.0</version>
 	</parent>
 	<artifactId>time-transformer-agent</artifactId>
 	<version>1.4.1-SNAPSHOT</version>
@@ -104,7 +104,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.2.4</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -139,7 +139,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -149,7 +148,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<version>3.1.1</version>
+									<version>3.2.5</version>
 								</requireMavenVersion>
 							</rules>
 						</configuration>
