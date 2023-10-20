@@ -9,6 +9,9 @@ import com.topdesk.timetransformer.agent.DoNotInstrument;
  */
 @DoNotInstrument
 public enum DefaultTime implements Time {
+	/**
+	 * Singleton instance of DefaultTime
+	 */
 	INSTANCE;
 	
 	@Override

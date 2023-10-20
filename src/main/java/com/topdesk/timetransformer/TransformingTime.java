@@ -11,6 +11,9 @@ import com.topdesk.timetransformer.agent.DoNotInstrument;
  */
 @DoNotInstrument
 public enum TransformingTime implements Time {
+	/**
+	 * Singleton instance of TransformingTime
+	 */
 	INSTANCE;
 	
 	private final AtomicReference<Clock> clock = new AtomicReference<>(Clock.DEFAULT);
@@ -21,14 +24,15 @@ public enum TransformingTime implements Time {
 	}
 	
 	/**
-	 * @return {@code true} if this is the currently active Time.
+	 * Is the currently active Time?
+	 * @return {@code true} if this is the currently active Time
 	 */
 	public static boolean active() {
 		return TimeTransformer.isActiveTime(TransformingTime.INSTANCE);
 	}
 	
 	/**
-	 * Returns a {@link Changer} object to manipulate the clock.
+	 * Returns a {@link Changer} object to manipulate the clock
 	 * @return a {@code Changer} object to manipulate the clock
 	 */
 	public static Changer change() {

@@ -18,6 +18,9 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
+/**
+ * Bytecode transformer to 
+ */
 public class TimeInstrumentationTransformer implements ClassFileTransformer {
 	private static final String TIME_TRANSFORMER_PACKAGE = "com/topdesk/timetransformer/";
 	private static final String TIME_TRANSFORMER_CLASS = TIME_TRANSFORMER_PACKAGE + "TimeTransformer";
@@ -70,6 +73,9 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 		}
 	}
 	
+	/**
+	 * MethodVisitor that will rewrite any call to {@link java.lang.System#currentTimeMillis()} and {@link java.lang.System#nanoTime()} to use the TimeTransformer instead
+	 */
 	private static class MethodInstrumenter extends MethodVisitor {
 		MethodInstrumenter(MethodVisitor methodVisitor) {
 			super(ASM9, methodVisitor);
@@ -87,6 +93,11 @@ public class TimeInstrumentationTransformer implements ClassFileTransformer {
 		}
 	}
 	
+	/**
+	 * MethodVisitor to transform the {@link java.time.Clock$SystemClock#instant()} method to its Java 8 implementation, such that its time is correctly transformed by the TimeTransformer.
+	 * 
+	 * Java 9 changed the implementation to achieve a higher resolution than System.currentTimeMillis. It calls another native method, so was not instrumented by the TimeTransformer.
+	 */
 	private static class SystemClockMethodInstrumenter extends MethodVisitor {
 		private final MethodVisitor target;
 		

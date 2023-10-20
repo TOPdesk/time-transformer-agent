@@ -170,6 +170,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
 					<source>8</source>
+					<doclint>all,-missing</doclint>
 				</configuration>
 			</plugin>
 		</plugins>

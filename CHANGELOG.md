@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.1] - 2019-03-13
 ### Fixed
-- `java.util.Clock$SystemClock.instant()` wasn't transformed properly in Java 9+.
+- `java.time.Clock$SystemClock.instant()` wasn't transformed properly in Java 9+.
 
 ## [1.2.0] - 2019-01-25
 ### Added

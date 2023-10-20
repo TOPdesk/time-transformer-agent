@@ -3,6 +3,9 @@ package com.topdesk.timetransformer.agent;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 
+/**
+ * Java Agent class to startup the TimeInstrumentationTransformer agent
+ */
 public class InstrumentationAgent {
 	/**
 	 * JVM hook to statically load the javaagent at startup.
