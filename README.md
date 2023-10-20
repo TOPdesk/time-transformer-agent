@@ -2,8 +2,8 @@
 
 The `TimeTransformer` is a Java agent to manipulate the time returned by `System.currentTimeMillis()` and `System.nanoTime()`. See also [the example project](https://github.com/TOPdesk/time-transformer-examples).
 
-# Usage:
-## In unit tests:
+# Usage
+## In unit tests
 1. Add the time-transformer-agent.jar to your lib folder or add it as a test dependency.
 
   **Maven example:**
@@ -11,7 +11,7 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
   <dependency>
       <groupId>com.topdesk</groupId>
       <artifactId>time-transformer-agent</artifactId>
-      <version>1.3.0</version>
+      <version>2.0.0</version>
       <scope>test</scope>
   </dependency>
   ```
@@ -71,14 +71,17 @@ The `TimeTransformer` is a Java agent to manipulate the time returned by `System
 
   *Eclipse:*
 
-  It is also possible to use the TimeTransformer in the Eclipse JUnit runner. Edit your Run configuration -> *Arguments* ->  *VM arguments* -> `-javaagent:/path/to/time-transformer-agent-1.3.0.jar`
+  It is also possible to use the TimeTransformer in the Eclipse JUnit runner. Edit your Run configuration -> *Arguments* ->  *VM arguments* -> `-javaagent:/path/to/time-transformer-agent-2.0.0.jar`
 
-# How the TimeTransformer works:
+# How the TimeTransformer works
 The `TimeTransformer` uses bytecode weaving to replace all calls to `System.currentTimeMillis()` and `System.nanoTime()` for calls to `TimeTransformer.currentTimeMillis()` and `TimeTransformer.nanoTime()`. Bytecode weaving (a.k.a. bytecode instrumentation, or just in time bytecode manipulation) is the process of modifying the Java bytecode when a class is loaded by a ClassLoader.
 
 The interceptor class `TimeTransformer` delegates all calls to an implementation of the `Time` interface. You can set your own implementation of the `Time` interface or use one of the two defaults: `DefaultTime` or `TransformingTime`.
 
 Implementation detail: the default implementation of `TimeTransformer.nanoTime()` returns `System.currentTimeMillis() * 1_000_000`.
 
-# Contributing:
+# Requirements
+The TimeTransformer agent requires Java 11.
+
+# Contributing
 By adding your name to the `AUTHORS` file, you accept that your changes will become public under the license specified in the `LICENSE` file.
