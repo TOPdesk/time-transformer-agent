@@ -1,25 +1,25 @@
 package com.topdesk.timetransformer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Clock;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class InstrumentationAgentITWithTimeManipulation {
 	private static final long time = 1_000_000_000l;
 	
-	@Before
+	@BeforeEach
 	public void before() {
 		TimeTransformer.setTime(TransformingTime.INSTANCE);
 		TransformingTime.INSTANCE.apply(TransformingTime.change().at(time).stop());
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		TimeTransformer.setTime(DefaultTime.INSTANCE);
 	}

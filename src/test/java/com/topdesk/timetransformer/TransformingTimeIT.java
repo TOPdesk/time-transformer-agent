@@ -1,21 +1,21 @@
 package com.topdesk.timetransformer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 // NOTE: This class is system dependent. It makes extensive use of Thread.sleep.
 public class TransformingTimeIT {
 	private static final ZonedDateTime INITIAL_DATE = ZonedDateTime.of(1970, 1, 1, 12, 34, 56, 789, ZoneId.of("UTC"));
 	private static final long INITAL_TIME = INITIAL_DATE.toInstant().toEpochMilli();
 	
-	@Before
+	@BeforeEach
 	public void before() {
 		TransformingTime.INSTANCE.restoreTime();
 	}
