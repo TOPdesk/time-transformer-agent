@@ -1,5 +1,6 @@
 package com.topdesk.timetransformer.agent;
 
+import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 
@@ -7,6 +8,9 @@ import java.lang.instrument.UnmodifiableClassException;
  * Java Agent class to startup the TimeInstrumentationTransformer agent
  */
 public class InstrumentationAgent {
+	// Visible for testing
+	static ClassFileTransformer timeTransformer = new TimeInstrumentationTransformer();
+	
 	/**
 	 * JVM hook to statically load the javaagent at startup.
 	 *
@@ -18,7 +22,7 @@ public class InstrumentationAgent {
 	 * @throws UnmodifiableClassException  if a specified class cannot be modified(isModifiableClass would return false)
 	 */
 	public static void premain(@SuppressWarnings("unused") String agentArgs, Instrumentation instrumentation) throws UnmodifiableClassException {
-		instrumentation.addTransformer(new TimeInstrumentationTransformer(), false);
+		instrumentation.addTransformer(timeTransformer, true);
 		
 		if (instrumentation.isRetransformClassesSupported()) {
 			Class<?>[] allLoadedClasses = instrumentation.getAllLoadedClasses();
