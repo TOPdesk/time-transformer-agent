@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>open-source-parent</artifactId>
 		<groupId>com.topdesk</groupId>
-		<version>4.0.0</version>
+		<version>5.0.0</version>
 	</parent>
 	<artifactId>time-transformer-agent</artifactId>
 	<version>2.2.0-SNAPSHOT</version>
@@ -13,7 +13,7 @@
 	<properties>
 		<java.version>11</java.version> <!-- Target Java version 11, so old projects can also benefit from the TimeTransformer -->
 	</properties>
-	
+
 	<developers>
 		<developer>
 			<name>Joep Weijers</name>
@@ -46,7 +46,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.ow2.asm</groupId>
@@ -199,4 +199,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

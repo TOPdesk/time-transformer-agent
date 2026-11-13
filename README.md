@@ -83,5 +83,13 @@ Implementation detail: the default implementation of `TimeTransformer.nanoTime()
 # Requirements
 The TimeTransformer agent requires Java 11.
 
+# Releasing
+Releases are published to Maven Central by the `Release to Maven Central` GitHub Actions workflow.
+
+1. Add the new version to `CHANGELOG.md` and merge it to `main`.
+2. Create a GitHub release whose tag is the version (e.g. `2.3.0` or `v2.3.0`).
+
+The workflow sets that version in the pom, builds, signs and publishes the artifacts. It can also be started manually from the *Actions* tab. It needs these repository secrets: `MAVEN_CENTRAL_USERNAME` and `MAVEN_CENTRAL_PASSWORD` (Central Portal token), `MAVEN_GPG_PRIVATE_KEY` and `MAVEN_GPG_PASSPHRASE`.
+
 # Contributing
 By adding your name to the `AUTHORS` file, you accept that your changes will become public under the license specified in the `LICENSE` file.
